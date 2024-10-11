@@ -12,7 +12,7 @@ jobs:
       uses: xu-cheng/latex-action@v3
       with:
           # The root LaTeX file to be compiled
-          root_file: report.tex
+          root_file: main.tex
 
           # Interpret the root_file input as bash glob pattern
           # glob_root_file: # optional
@@ -49,7 +49,7 @@ jobs:
 
     - name: Check pdf file
       run: |
-        file report.pdf | grep -q ' PDF '
+        file lecture_notes.pdf | grep -q ' PDF '
 
     - name: Upload file to repository
       run: |
