@@ -36,7 +36,7 @@ jobs:
           pre_compile: tlmgr update --self && tlmgr update --all
 
           # Arbitrary bash codes to be executed after compiling LaTeX documents
-          post_compile: latexmk -c
+          post_compile: latexmk -c && mv main.pdf lecture_notes.pdf
 
           # Instruct latexmk to enable --shell-escape
           # latexmk_shell_escape: # optional
@@ -49,13 +49,13 @@ jobs:
 
     - name: Check pdf file
       run: |
-        file main.pdf | grep -q ' PDF '
+        file lecture_notes.pdf | grep -q ' PDF '
 
     - name: Upload file to repository
       run: |
         git config --global user.name "your_username"
         git config --global user.email "your_email"
-        git add main.pdf
-        git commit -m "commit message"
+        git add lecture_notes.pdf
+        git commit -m "Update lecture notes PDF"
         git push
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
