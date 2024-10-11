@@ -53,8 +53,8 @@ jobs:
 
     - name: Upload file to repository
       run: |
-        git config --global user.name "your_username"
-        git config --global user.email "your_email"
+        git config --global user.name "Ayushi141"
+        git config --global user.email "ayushi@gmx.de"
         git add lecture_notes.pdf
         git commit -m "Update lecture notes PDF"
         git push
