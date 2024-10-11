@@ -1,0 +1,225 @@
+\documentclass{tufte-handout}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+
+\usepackage{booktabs}
+\usepackage{units}
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+\usepackage{multicol}
+\usepackage{lipsum}
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage{xcolor}
+\usepackage{amsmath, amsthm, thmtools}
+\usepackage{amssymb}
+\usepackage{cleveref}
+\usepackage{csquotes}
+\geometry{
+  marginparwidth=50mm % width of margin notes
+}
+%%%%%%%%% mathematical bold  %%%%%%%%%%%%%%%%%
+
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\bB}{\mathbb{B}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\Cs}{\bC^\times}
+\newcommand{\bD}{\mathbb{D}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bH}{\mathbb{H}}
+\newcommand{\bI}{\mathbb{I}}
+\newcommand{\bJ}{\mathbb{J}}
+\newcommand{\bK}{\mathbb{K}}
+\newcommand{\bL}{\mathbb{L}}
+\newcommand{\bM}{\mathbb{M}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\bO}{\mathbb{O}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bp}{\mathbb{p}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bU}{\mathbb{U}}
+\newcommand{\bV}{\mathbb{V}}
+\newcommand{\bW}{\mathbb{W}}
+\newcommand{\bX}{\mathbb{X}}
+\newcommand{\bY}{\mathbb{Y}}
+\newcommand{\Z}{\mathbb{Z}}
+
+%%%%%%%%% calligraphic %%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cm}{\mathcal{m}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+%%%%%%%%% mathematical fraktur  %%%%%%%%%%%%%%
+
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\fa}{\mathfrak{a}}
+\newcommand{\fb}{\mathfrak{b}}
+\newcommand{\fc}{\mathfrak{c}}
+\newcommand{\fA}{\mathfrak{A}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\fC}{\mathfrak{C}}
+\newcommand{\fD}{\mathfrak{D}}
+\newcommand{\fE}{\mathfrak{E}}
+\newcommand{\fF}{\mathfrak{F}}
+\newcommand{\fG}{\mathfrak{G}}
+\newcommand{\fH}{\mathfrak{H}}
+\newcommand{\fI}{\mathfrak{I}}
+\newcommand{\fJ}{\mathfrak{J}}
+\newcommand{\fK}{\mathfrak{K}}
+\newcommand{\fL}{\mathfrak{L}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\fN}{\mathfrak{N}}
+\newcommand{\fO}{\mathfrak{O}}
+\newcommand{\fp}{\mathfrak{p}}
+\newcommand{\fQ}{\mathfrak{Q}}
+\newcommand{\fq}{\mathfrak{q}}
+\newcommand{\fR}{\mathfrak{R}}
+\newcommand{\fS}{\mathfrak{S}}
+\newcommand{\fT}{\mathfrak{T}}
+\newcommand{\fU}{\mathfrak{U}}
+\newcommand{\fV}{\mathfrak{V}}
+\newcommand{\fW}{\mathfrak{W}}
+\newcommand{\fX}{\mathfrak{X}}
+\newcommand{\fY}{\mathfrak{Y}}
+\newcommand{\fZ}{\mathfrak{Z}}
+
+%%%%%%%%%    math operators    %%%%%%%%%%%%%%%
+
+\newcommand{\RP}{\mathbb{RP}^2}
+\newcommand{\gen}[1]{\langle #1\rangle}
+\newcommand{\Id}{\mathrm{Id}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\ggt}{ggT}
+\DeclareMathOperator{\kgv}{kgV}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Iso}{Iso}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\UT}{UT_3(\R)}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\modn}{mod}
+\DeclareMathOperator{\stab}{Stab_G}
+\DeclareMathOperator{\Th}{Th}
+\DeclareMathOperator{\On}{On}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+
+%%%%%%%%%    thmtools environments  %%%%%%%%%%%%%%%
+
+\declaretheoremstyle[
+shaded={
+    rulecolor=Lavender!35,
+    rulewidth=2pt,
+    bgcolor=Lavender!25},
+spaceabove=6pt, spacebelow=6pt,
+headfont=\normalfont\bfseries, headindent=\parindent,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=0.5em]{lav}
+
+\declaretheoremstyle[
+shaded={
+    rulecolor=Salmon!12,
+    rulewidth=2pt,
+    bgcolor=Salmon!8},
+spaceabove=6pt, spacebelow=6pt,
+headfont=\normalfont\bfseries, headindent=\parindent,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=0.5em]{red}
+
+\declaretheoremstyle[
+shaded={
+    rulecolor=RoyalBlue!8,
+    rulewidth=2pt,
+    bgcolor=RoyalBlue!5},
+spaceabove=6pt, spacebelow=6pt,
+headfont=\normalfont\bfseries, headindent=\parindent,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=0.5em]{lightblue}
+
+\declaretheorem[
+name=Definition, 
+style=lav, 
+numberwithin=section,
+refname={definition, definitions},
+Refname={Definition, Definitions}
+]{definition}
+
+\declaretheorem[
+name=Theorem, 
+style=blue, 
+sibling=definition
+]{theorem}
+
+\declaretheorem[
+name=Lemma, 
+style=lightblue, 
+sibling=definition
+]{lemma}
+
+\declaretheorem[
+name=Proposition, 
+style=lightblue, 
+sibling=definition
+]{proposition}
+
+\declaretheorem[
+name=Korollar, 
+style=lightblue, 
+sibling=definition
+]{corollary}
+
+\declaretheorem[
+name=Exercise, 
+style=lightblue, 
+sibling=definition
+]{exercise}
+
+\declaretheorem[
+name=Note, 
+style=red, 
+sibling=definition
+]{note}
+
+
+\setlength{\headheight}{14.0pt}
