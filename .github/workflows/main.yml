@@ -11,51 +11,17 @@ jobs:
     - name: Compile LaTeX document
       uses: xu-cheng/latex-action@v3
       with:
-          # The root LaTeX file to be compiled
           root_file: main.tex
-
-          # Interpret the root_file input as bash glob pattern
-          # glob_root_file: # optional
-
-          # The working directory for this action
-          # working_directory: # optional
-
-          # The LaTeX engine to be invoked
-          # compiler: # optional, default is latexmk
-
-          # Extra arguments to be passed to the LaTeX engine
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
-
-          # Install extra packages by apk
-          # extra_system_packages: # optional
-
-          # Install extra .ttf/.otf fonts.
-          # extra_fonts: ./fonts/*.ttf
-
-          # Arbitrary bash codes to be executed before compiling LaTeX documents
           pre_compile: tlmgr update --self && tlmgr update --all
-
-          # Arbitrary bash codes to be executed after compiling LaTeX documents
           post_compile: latexmk -c && mv main.pdf lecture_notes.pdf
-
-          # Instruct latexmk to enable --shell-escape
-          # latexmk_shell_escape: # optional
-
-          # Instruct latexmk to use LuaLaTeX
-          # latexmk_use_lualatex: # optional
-
-          # Instruct latexmk to use XeLaTeX
-          # latexmk_use_xelatex: true 
 
     - name: Check pdf file
       run: |
         file lecture_notes.pdf | grep -q ' PDF '
 
     - name: Upload file to repository
-      run: |
-        git config --global user.name "Ayushi141"
-        git config --global user.email "ayushi@gmx.de"
-        git add lecture_notes.pdf
-        git commit -m "Update lecture notes PDF"
-        git push
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+          commit_message: Update lecture notes PDF
+          file_pattern: lecture_notes.pdf
