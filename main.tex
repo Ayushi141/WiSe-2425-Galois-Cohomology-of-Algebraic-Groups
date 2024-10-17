@@ -90,11 +90,13 @@ $$\{\text{module over } \Z[G]\} \leftrightarrow \{\text{abelian group $A$ with $
             \3 Consider $\sigma b - b$ for any $\sigma \in G$. We have $g(\sigma b - b) = g(\sigma b) - g(b)= \sigma g(b)-g(b)=\sigma c - c$. 
             \3 Since $c\in C^G$, $\sigma c - c = 0$ and $(\sigma b-b)\in \ker g$.
             \3 By exactness, $\ker g = \im f$, so $\sigma b - b \in \im f$.
-            \3 We can view this as an element of $A$ (considering $f$ as an inclusion $A \subseteq B$). 
-    \1[] So the question of right-exactness boils down to whether or not every $G$-invariant element of $C$ can be lifted to a $G$-invariant element of $B$ and the obstruction to it lives inside $A$.
+            \3 We can view this as an element of $A$ (considering $f$ as an inclusion $A \subseteq B$).
+            \marginnote{Also, $C\cong B / \im f$. Or consider presentations of groups.}
+    \1[] So the question of right-exactness boils down to whether or not every $G$-invariant element of $C$ can be lifted to a $G$-invariant element of $B$ and the obstruction to it lives inside of $A$. 
+    \marginnote{And if $b$ were indeed in $B^G$ then $(\sigma b -b)=0\in A$.}
     \1 This analysis leads us to define a map (for a given $c\in C^G$):
     $$\phi: G \to A, \quad \sigma \mapsto \sigma b - b =: a_\sigma$$
-    This map is called a crossed homomorphism (also known as a derivation or 1-cocycle). It measures how far $b$ is from being $G$-invariant. If $b$ were $G$-invariant, this map would be identically $0$.
+    This map is called a crossed homomorphism (also known as a derivation or 1-cocycle). It measures how far $b$ is from being $G$-invariant. If $b$ were $G$-invariant, this map would be identically $0$! Note that this is independent of any $b$ taken such that $g(b)=c$. Such cocycles are cohomologous.
     
 \begin{proposition}
     The map $\sigma \mapsto a_\sigma$ satisfies:
@@ -112,7 +114,11 @@ $$\{\text{module over } \Z[G]\} \leftrightarrow \{\text{abelian group $A$ with $
     $$\begin{tikzcd}[column sep=small]
     0 \arrow[r] & A^G \arrow[r] & B^G \arrow[r] & C^G \arrow[r, "\delta"] & H^1(G,A) \arrow[r] & H^1(G,B) \arrow[r] & H^1(G,C) \arrow[r] & 0
     \end{tikzcd}$$
-    This sequence is exact in Ab, and the map $\delta$ (called the connecting homomorphism) measures the failure of right-exactness of the fixed point functor.
+    This sequence is exact in Ab, and the map $\delta$ (called the connecting homomorphism) measures the failure of right-exactness of the fixed point functor, since $\ker \delta$ represents all elements of $C^G$ which can be lifted to elements of $B^G$.
+    \marginnote{In field theory, $H^1(G,A)$ can represent the obstruction to an element being a norm.
+    In the theory of algebraic groups, $H^1(G,A)$ can represent the obstruction to a torsor having a rational point.}
+    \1 The key idea of the 1-cocycle is to encode the failure of $G$-invariance in a way that's compatible with the group structures involved. It allows us to move from concrete elements ($b$ and $c$) to cohomological objects ($[\phi]$) that capture essential information about the Galois action and the relationship between our groups $A$, $B$, and $C$.
+    This approach transforms specific lifting problems into more general cohomological questions, allowing us to apply powerful theoretical tools and gain deeper insights into the structures we're studying.
 
 \begin{exercise}
     Show that $H^1(G,-)$ is functorial and 
@@ -127,7 +133,7 @@ $$\{\text{module over } \Z[G]\} \leftrightarrow \{\text{abelian group $A$ with $
         \2 $H^1(G,A)=Z^1(F,A)/\sim$, where $\sim$ is an equivalence relation defined by: $a_\sigma \sim b_\sigma \iff \exists a' \in A : b_\sigma = (a')^{-1} \cdot a_\sigma \cdot \prescript{\sigma}{}{a'}$. 
         \marginnote{We cannot expect $B^1(G,A)$ to be a subgroup. Why?}
         \marginnote{$\prescript{\sigma}{}{a}$ denotes the action of $\sigma$ on $a$.}
-    \1[] In this case, $H^1(G,A)$ doesn't have a group structure, but it's a pointed set (a set with a distinguished element). We can still define a notion of exactness for sequences of pointed sets.
+    \1[] In this case, $H^1(G,A)$ doesn't have a group structure, but is a pointed set (a set with a distinguished element). We can still define a notion of exactness for sequences of pointed sets.
 \marginnote{Exactness in pointed sets $(A,*)$ is defined as $\im f = \ker g = g^{-1}(*)$}
 
 \marginnote{$A\leq_G B$ is $G$-equivariant inclusion.}
