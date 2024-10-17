@@ -25,6 +25,8 @@
 
 \maketitle
 
+These notes are my rendition of the lectures given by Prof. Kammeyer to the doctoral students of GRK 2240 in Düsseldorf during winter term 24/25. Sometimes I've expanded and rewritten them sufficiently or added proofs for theorems I didn't know. As of now, I've only taken some algebraic topology and commutative algebra, so these notes may reflect my currently rather limited knowledge. 
+
 \tableofcontents
 \clearpage
 
@@ -159,6 +161,8 @@ This is the \textbf{Galois cohomology}. Why do we care? In the non-commutative c
     \begin{definition}
         An algebraic number field is a finite field extension $k/\Q$. 
     \end{definition}
+    \marginnote{\enquote{The concept of algebraic integer was one of the most important discoveries of number theory. It is not easy to explain quickly why it is the right definition to use, but roughly speaking, we can think of the leading coefficient of the primitive irreducible polynomials $f(x)$ as a \enquote{denominator}.If $\alpha$ is the root of an integer polynomial $f(x)$=$dx^n+a_{n-1}x^{n-1}+\ldots$, then $d\alpha$ is an algebraic integer, because it is a root of the monic integer polynomial $x^n+a_{n-1}x_{n-1}+\ldots+d^{n-1}a_0$.\\
+    Thus we can \enquote{clear the denominator} in any algebraic number by multiplying it with a suitable integer to get an algebraic integer.} --- Artin, Algebra.}
         \1 This definition implies the following properties:
             \2 The field $k$ has characteristic 0.
             \2 By the Primitive Element Theorem, $k = \mathbb{Q}(a)$ for some $a \in K$.
@@ -201,61 +205,100 @@ This is the \textbf{Galois cohomology}. Why do we care? In the non-commutative c
     \0 Let $k$ be an algebraic number field for the following discussion.
     \begin{definition}
         The ring of integers in $k$ is defined as:
-        $$\cO_k=\{\alpha \in k : f(\alpha)=0 \text{ for some monic }f\in \Z[X]\}.$$
+        $$\cO_k=\{\alpha \in k : f(\alpha)=0 \text{ for some monic }f\in \Z[X]\}=\overline{Z}^k.$$
     \end{definition}
         \1 Example: $\cO_\Q = \Z$. It is often referred to as the ring of \enquote{rational integers}.
-    \begin{proposition}
+    \0 \begin{proposition}
         For $(\alpha_1,\ldots,\alpha_r)\in k$, the following are equivalent:\\
         1. $(\alpha_1,\ldots,\alpha_r)\in\cO_k$\\
         2. $\Z[\alpha_1,\ldots,\alpha_r]$ is finitely generated as a $\Z$-module.
     \end{proposition}
-    The corolllary is that $\cO_k$ is a ring. (why?)
+    \textit{Proof:} $\implies$ If each $\alpha_i \in \cO_k$, then it satisfies a monic polynomial with integer coefficients. Let the minimal polynomial of $\alpha_i$ be: $f_i(x)=x^{n_i}+a^{(i)}_{n_i-1}x^{n_i-1}+\ldots + a^{(i)}_{1}x + a^{(i)}_0$ where each $a^{(i)}_j\in \Z$. From the minimal polynomial, we can express any higher power of $\alpha_i$ as a $\Z$-linear combination of lower powers:
+    $$\alpha_i^{n_i} = -\sum_{j=1}^{n_i} a^{(i)}_{n_i-j}\alpha_i^{n_i-j}$$
+    This means that the set $\{1,\alpha_i,\alpha_i^2,\ldots,\alpha_i^{n_i-1}\}$ spans $\Z[\alpha_i]$ as a $\Z$-module. (As any higher power is a $\Z$-linear combination of elements from the set and any lower power is already in the set). Now consider all monomials of the form $\alpha_1^{e_1} \alpha_2^{e_2} \ldots \alpha_r^{e_r}$, where $0\leq e_i< n_i$. They cover all possible combination of the $\alpha_i$'s up to the power $n_i-1$ for each $\alpha_i$. Any higher powers can be reduced to linear combinations of these monomials using the minimal polynomials. As such, $\Z[\alpha_1, \ldots, \alpha_r]$ is spanned by $N=n_1 n_2 \ldots n_r$ such monomials and therefore is finitely generated over $\Z$. $\impliedby$ This part is trickier, so we will skip it (keyword transformations, Cayley-Hamilton, characteristic polynomial).\qed
+    % Assume that $\Z[\alpha_1,\ldots,\alpha_r]$ is finitely generated as a $\Z$-module by some $\beta_1,\ldots,\beta_n$. 
+    % As such we can express any $\alpha_i$ as a $\Z$-linear combination of $\beta_j$. This means there is a system of linear equations relating $\alpha_i$'s to $\beta_j$'s. 
+    % \begin{align*}
+    % \begin{cases}
+    %     \alpha_1 = \sum_{j=1}^n b_j^{(1)} \beta_j \\
+    %     \alpha_2 = \sum_{j=1}^n b_j^{(2)} \beta_j \\
+    %     \ldots \\
+    %     \alpha_r = \sum_{j=1}^n b_j^{(r)} \beta_j
+    % \end{cases}
+    % \end{align*}
+    % This defines a $\Z$-linear map from $\Z[\alpha_1,\ldots,\alpha_r]$ to itself, whose charactersistic polynomial satisfies Cayley-Hamilton. As such it is $0$ for the vector $x=(\alpha_1,\ldots,\alpha_r)$.
+    % Let $x\in\Z[\alpha_1,\ldots,\alpha_r]$, then $x$ can be expressed as a polynomial in the $\alpha_i$'s with integer coefficients.
     
-    \begin{lemma}
+    \1 Since for $\alpha,\beta \in \cO_k$ their sum $\Z[\alpha+\beta]$ and multiplication $\Z[\alpha\cdot\beta]$ are also finitely generated, $\cO_k$ is a ring.
+    
+    \0 \begin{lemma}
         For $\alpha \in k$, there exist $\beta \in \cO_k, n\in\Z$ such that $\alpha=\frac{\beta}{n}$.
     \end{lemma}
     
     From now on we can assume that our algebraic number field is generated by a primitive element which is an algebraic integer.
     
     \begin{proposition}
-        We can sandwhich the ring $\cO_k$ between $\Z[a]$ and $\frac{1}{discr\{1,\ldots,a^{d-1}\}} \Z[a]$. (This 1/discr is in $\Z$ because it is in the intersection of algebraic integers in $k$ and $\Q$). Because it lies between two free abelian groups of the same rank, it has to be free abelian of the same rank.
+        Let $k$ be of degree $d$ over $\mathbb{Q}$, and let $a$ be a primitive element of $k$. Then 
+        $$\mathbb{Z}[a] \subseteq \mathcal{O}_k \subseteq \frac{1}{\discr{1,a,\ldots,a^{d-1}}} \mathbb{Z}[a]$$
+        Because $\mathcal{O}_k$ lies between two free abelian groups of the same rank, it must be a free abelian group of the same rank.
     \end{proposition}
+    \marginnote{(Note: $\frac{1}{\discr{1,a,\ldots,a^{d-1}}}$ is in $\mathbb{Z}$ because it is in the intersection of algebraic integers in $k$ and $\mathbb{Q}$.)}
     
     \begin{corollary}
-        $\cO_k$ has a $\Z$-basis of rank $d$.Any such is called an integral basis.
+        $\cO_k$ has a $\Z$-basis of rank $d$. Any such basis is called an integral basis.
     \end{corollary}
-    (Z lattice in a Q vector space and you exhaust it by multiplying with the integers? What? Minkowski geometry of numbers (covolumes?))
+    (Note: This relates to the theory of lattices in $\mathbb{Q}$-vector spaces and Minkowski's geometry of numbers. The covolumes of these lattices play a crucial role in understanding the structure of $\mathcal{O}_k$.)
     
     \begin{corollary}
         $\cO_k$ is noetherian. 
     \end{corollary}
     
     \begin{definition}
-        The discriminant of $k$ is given by $discr_k=d_k=discr\{ \alpha_1, \ldots, \alpha_d \}$ for an integral basis. Well-defined because $\det(T...)=\pm 1$.
+        The discriminant of $k$, denoted by $\discr{}_k$ or $d_k$ is given by $\discr{ \alpha_1, \ldots, \alpha_d }$ for any integral basis $\{\alpha_1,\ldots,\alpha_d\}$. This is well-defined because the change of basis matrix has determinant $\det(T...)=\pm 1$.
     \end{definition}
     
-    More generally, we can also define relative discriminants $ fancy d_{l/k} = discr(\beta_i)\subseteq \cO_k$. This d is an ideal because in general we might be not in a PID anymore. 
+    More generally, we can also define relative discriminants $d_{L/K}$ for a field extension $L/K$ as $d_{L/K} = \discr{\beta_i}$ where ${\beta_i}$ is a relative integral basis. This $d_{L/K}$ is an ideal in $\cO_K$, as we might not be in a principal ideal domain anymore.
+
     
     \begin{exercise}
-        $k=\Q(\sqrt{D})$, $D$ square-free integer. If $D \equiv 1 (4)$ or $D \equiv 2,3 (4)$  then the integral basis is ... and discriminant is $D$ or $4D$.
+        Let $k = \mathbb{Q}(\sqrt{D})$, where $D$ is a square-free integer. Show that:\\
+        a) If $D \equiv 1 \pmod{4}$, then an integral basis is ${1, \frac{1+\sqrt{D}}{2}}$ and $d_k = D$.\\
+        b) If $D \equiv 2,3 \pmod{4}$, then an integral basis is ${1, \sqrt{D}}$ and $d_k = 4D$.
     \end{exercise}
 \end{outline}
 
-\subsection{The arithmetic of algebraic intgers}
+\subsection{The arithmetic of algebraic integers}
 
 \begin{outline}
-\0 For $k=\Q(\sqrt{5})$, $\cO_k = \Z[\sqrt{-5}]$. In $\cO_k$, we have $21=3\cdot 7 = (1+2\sqrt{-5})\cdot (1-2\sqrt{-5})$ and these factors are irreducible. (something something norm of a number). So it is not a UFD. Kummer suggested: in an ideal world, there would be ideal numbers $p_1\cdot p_2 = 3$ and $p_3\cdot p_4 = 7$, with $p_1\cdot p_3 = 1+2\sqrt{-5}$ and $p_2 p_4 = 1-2\sqrt{-5}$, hence $21 = p_1p_2p_3p_4=p_1p_3p_2p_4$ so they would differ only by a permutation and factorization would be unique. Apparently: $p_1 \mid 3$ and $p_1 \mid 1+2\sqrt{-5} \implies p_1 \mid \lambda 3 + \mu (1+2\sqrt{5})$ and $p_1$ should be determined by the set of all $\alpha \in \cO_k$ that it divides.  So set $p_1=(3,1+2\sqrt{5})$ and $p_2=(3,1-2\sqrt{-5})$ and so on... So the idea is that one might get unique factorization in ideals instead. 
-
-\begin{theorem}
+    \1 Example: Consider the number field $k = \mathbb{Q}(\sqrt{-5})$. In this field:
+        \2 The ring of integers is $\mathcal{O}_k = \mathbb{Z}[\sqrt{-5}]$.
+        \2 We have the factorization: $21 = 3 \cdot 7 = (1+2\sqrt{-5}) \cdot (1-2\sqrt{-5})$. All factors in this factorization are irreducible. This demonstrates that $\mathcal{O}_k$ is not a Unique Factorization Domain (UFD). (Consider norm of an algebraic number$\ldots$)
+        \2 Kummer's idea of ideal numbers was to address this lack of unique factorization. He proposed the concept of \enquote{ideal numbers} $p_1, p_2, p_3, p_4$ such that:
+            $p_1 \cdot p_2 = 3$,
+            $p_3 \cdot p_4 = 7$,
+            $p_1 \cdot p_3 = 1 + 2\sqrt{-5}$,
+            $p_2 \cdot p_4 = 1 - 2\sqrt{-5}$.
+        This would lead to: $21 = p_1p_2p_3p_4 = p_1p_3p_2p_4$, differing only by permutation.
+        \2 Properties of these ideal numbers:
+            \3 $p_1 | 3$ and $p_1 | (1+2\sqrt{-5})$
+            \3 $p_1 | (\lambda \cdot 3 + \mu \cdot (1+2\sqrt{-5}))$ for any $\lambda, \mu \in \mathcal{O}_k$
+        \2 This suggests defining $p_1$ as the set of all $\alpha \in \mathcal{O}_k$ that it divides.
+        We can thus represent these "ideal numbers" as ideals:
+            $p_1 = (3, 1+2\sqrt{-5})$,
+            $p_2 = (3, 1-2\sqrt{-5})\ldots$
+    \1[] This approach leads to the idea of achieving unique factorization in terms of ideals rather than elements.
+\0 \begin{theorem}
     The ring $\cO_k$ is noetherian, integrally closed and of dimension $1$.
 \end{theorem}
 
-The hard thing is to single out that these three properties are key to a ring being a Dedekind domain. 
+These three properties characterize a fundamental class of rings in algebraic number theory:
 
 \begin{definition}
 An integral domain satisfying these three properties is called a Dedekind domain. 
 \end{definition}
 \end{outline}
+
+The significance of Dedekind domains lies in their unique factorization property for ideals, which generalizes the unique factorization of elements in UFDs.
 
 \marginnote{Lecture 3, ...}
 \end{document}
