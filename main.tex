@@ -20,7 +20,8 @@
 \newcommand\Gal[1]{\operatorname{Gal}({#1})}
 \renewcommand{\phi}{\varphi}
 \newcommand\discr[1]{\operatorname{discr}({#1})}
-
+\newcommand{\ch}{\operatorname{char}}
+\newcommand{\tr}{\operatorname{tr}}
 \begin{document}
 
 \maketitle
@@ -265,6 +266,33 @@ This is the \textbf{Galois cohomology}. Why do we care? In the non-commutative c
         a) If $D \equiv 1 \pmod{4}$, then an integral basis is ${1, \frac{1+\sqrt{D}}{2}}$ and $d_k = D$.\\
         b) If $D \equiv 2,3 \pmod{4}$, then an integral basis is ${1, \sqrt{D}}$ and $d_k = 4D$.
     \end{exercise}
+    \textit{Solution:} 
+    \marginnote{Fun fact: for any $x$ in a number field, TFAE:\\
+    a) The norm $N(x)$,\\
+    b) The determinant of $x$ in matrix representation $A$,\\
+    c) The constant term of the characteristic polynomial of $A$.\\
+    Fun fact 2: for any $x$ in a number field,\\
+    a) The trace of $A$ is the coefficient of second highest degree in the characteristic polynomial of $A$.\\
+    Thus trace $\tr_k(x)$ and $\det_k(x)$ completely determine $\ch_k(x,T)$ of degree $2$.}
+        \1 Suppose $a+b\sqrt{D} \in \cO_k$ with $a,b\in \Q$. Then 
+        $$a + b\sqrt{D} = \begin{pmatrix} a & bD \\ b & a \end{pmatrix} =:A\in M_2(\mathbb{Q}),$$
+        since $(a+b\sqrt{D})(x+y\sqrt{D})=ax+(ay+bx)\sqrt{D}+byD$. This is the product of multiplation with the \enquote{real} part $ax+byD$ and the \enquote{imaginary} part $(ay+bx)\sqrt{D}$. 
+        \1 Since multiplication by $a+b\sqrt{D}$ acts like multiplication by the matrix representation, consider its characteristic polynomial $\ch(x,T)=T^2-2aT+a^2-b^2D$.
+            \2 The constant term is $N_k(x)$.
+            \2 The coefficient of $T$ is $-\tr_k(x)$.
+        \1 For $x$ to be an algebraic integer, we need 
+            \2 $N_k(a+b\sqrt{D})=a^2-b^2D\in \Z$ 
+            \2 $\tr_k(x)=2a\in \Z$.
+        \1 Case-by-case: assume the above is true.
+            \2 If $a\in\Z$, then $b^2D \in\Z$. Since $D$ is square-free and $b^2=\frac{q^2}{p^2}$, it cannot cancel out the denominator $p^2$ completely. So $b^2 \in \Z$, thus $b\in\Z$ since we are working in $\Q$. This implies that $\{1,\sqrt{D}\}$ is the integral basis and $\Z + \Z\sqrt{D}=\cO_k$
+            \2 If $a\not\in\Z$, then from trace condition it is a completely reduced proper fraction of the form $\frac{2k+1}{2}\in\Q$. By the norm equation, $(\frac{2k+1}{2})^2-b^2D \in\Z$.
+                \3 Let's look at $(2a)^2-(2b)^2D\in\Z$. We have $2(a)^2 = (2k+1)^2\in\Z$, so $(2b)^2D\in\Z$. Since $D$ is square-free, $(2b)^2\in\Z$, therefore $2b\in\Z$.
+                \3 Say, $2b=m\in\Z$, then $b=\frac{m}{2}$. Plug this back into the original norm equation:
+                \2[] $$N(a+b\sqrt{D})=a^2-b^2D = (\frac{2k+1}{2})^2-(\frac{m}{2})^2D = \frac{4k^2+4k+1}{4}-\frac{m^2D}{4}\in \Z$$
+            \2 This fraction is integer if the numerator is $0 \bmod (4)$. 
+                \3 If $m$ is odd, then $m=2l+1$ and $m^2=4l^2+4l+1$, so we have $4(k^2-l^2D+k-lD)+(1-D)$, which is divisible by $4$ when $1-D=4$ or $D=1 \bmod (4)$.
+                \3 If $m$ is even, then we have $\frac{1}{4}\not\in\Z$. This implies that if $D=2,3\bmod (4)$, then half-integers don't work and $a,b\in\Z$.
+                \3 Normalizing $a$ and $b$ for $D=1\bmod (4)$ gives: $\frac{(2k+1}{2}+\frac{(2l+1)}{2}\sqrt{D} = k + l\sqrt{D}+ \frac{1+\sqrt{D}}{2}$, so $\cO_k=\Z+\Z(\frac{1+\sqrt{D}}{2})$.
 \end{outline}
 
 \subsection{The arithmetic of algebraic integers}
@@ -302,4 +330,4 @@ The significance of Dedekind domains lies in their unique factorization property
 
 \marginnote{Lecture 3, ...}
 \end{document}
- 
+  
