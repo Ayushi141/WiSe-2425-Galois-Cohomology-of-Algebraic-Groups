@@ -322,12 +322,138 @@ This is the \textbf{Galois cohomology}. Why do we care? In the non-commutative c
 These three properties characterize a fundamental class of rings in algebraic number theory:
 
 \begin{definition}
-An integral domain satisfying these three properties is called a Dedekind domain. 
+An integral domain satisfying these three properties is called a \textbf{Dedekind domain}. 
 \end{definition}
 \end{outline}
 
 The significance of Dedekind domains lies in their unique factorization property for ideals, which generalizes the unique factorization of elements in UFDs.
 
-\marginnote{Lecture 3, ...}
+\marginnote{Lecture 3, 31.11.24}
+
+\begin{outline}
+\0 \begin{theorem}
+    Every ideal $a$ not $0$ and not $1$ in a Dedekind domain has a unique factorization $a=p_1 p_2$ into prime ideals $p_i$. 
+\end{theorem}
+
+How do we get inverses of ideals? (We strive to treat them as ideal numbers, remember). Let $\cO$ be a Dedekind domain with field of fractions $K$
+
+\0 \begin{definition}
+    A \textbf{fractional ideal} of $K$ is any finitely generated $\cO$-submodule of $K$.
+\end{definition}
+
+\1 Examples: $(a)$ for $a\in K^*$, every integral ideal $a\subseteq \cO$.
+
+\1 Observe: An $\cO$-module $a\subseteq K^*$ is a fractional ideal iff there exists $0\neq c \in \cO$ such that $c\cdot a \subseteq \cO$. Hence for $a\neq 0$, the set $a^{-1}=\{x\in K : x\cdot a \subseteq \cO\}$ is a fractional ideal. If we define multiplication of ideals $a\cdot b$ as usual (finite sums and products), then $(1) \cdot a = a$ and $a\cdot a^{-1}=(1)$. The element $c$ can be thought of as clearing out the denominators in $a$.
+
+\0 \begin{definition}
+    The fractional ideals form abelian group $J_K$ called the \textbf{ideal group} of $K$.
+\end{definition}
+
+\0 \begin{corollary}
+    For $a \in J_K$, we have a unique decomposition $a = \prod_{(0)\neq p}p^{v_p}$ with $v_p \in \Z$ and almost all $v_p = 0$.
+\end{corollary}
+
+\1 So $J_K$ is free abelian with basis $Spec \cO \setminus \{(0)\}$. Let $P_K = \{(a) : a \in K^*\}$ be the subgroup of \textbf{principal fractional ideals}.
+
+\0 \begin{definition}
+    The (ideal) \textbf{class group} of $K$ is $Cl_K=\delta_K / P_K$. Hence: 
+    $1 \ra \cO^* \ra K^* \ra J_K \ra Cl_K \ra 1$ is exact, so $(a_K / \cO^*)$ describes the $(gain/loss)$ when passing from numbers to ideal numbers.
+\end{definition}
+\marginnote{Loss or gain, are the same.}
+
+\1 Need to study $a_K$ and $\cO^*$. Back to $K=k$ and $\cO = \cO_k$. Further without proofs:
+
+\0 \begin{theorem}
+    The class group $Cl_k$ is finite. (Gauss-Minkowski)
+\end{theorem}
+
+\1 Its order $|Cl_k|$ becomes an important invariant and this invariant is called the \textbf{class number} $h_k$ of $k$. It measures the deviation of $k$...
+
+\1 Example: Let $D>0$ be square-free. Then $h_{\Q(\sqrt{-D})} = 1 \iff D\in \{1,2,3,7,11,19,43,67,163\}$. Was only conjectured by Gauss and proven by Baker-Stark-Heegner.
+
+\1 Determining class numbers of field is a very hard problem in general. Still open: Are there infinitely many $D$ with $h_{\Q(\sqrt{D})}=1$? 
+
+\1 The class group being trivial means that something is UFD and then it is an exercise that in Dedekind domains, UFD implies PID? 
+
+\0 \begin{theorem}
+    (Dirichlet) $\cO^*_k \cong \mu(k)\oplus \Z^{r_1 + r_2 -1}$ (roots of unity in $k$ with number of embeddings $r_1,r_2$)
+\end{theorem}
+\textit{Proof strategy:} \enquote{Geometry of numbers}, lattice, convex closed subsets, etc...
+
+\0 \begin{exercise}
+    Show that for every non-zero ideal $\cO_k /a$ is finite for all $(0)\neq a$. Hint: First assume $a=p$ is prime.
+\end{exercise}
+
+\0 \begin{definition}
+    The \textbf{absolute norm} of $(0)\neq a$ is $n(a)=|\cO_k /a|$.
+\end{definition}
+
+\0 \begin{exercise}
+    For $a\in \cO_k$, we have $n((a)) = |N_{k/\cQ}(a)|$. It is multiplicative, $n(ab)=n(a)n(b)$, so a homomorphism from $J_K$ to $\R_{> 0}$.
+\end{exercise}
+
+This is all we need about integrality in number fields.
+\end{outline}
+
+\subsection{Decomposition and ramification}
+
+\begin{outline}
+Let $p$ be a rational prime. Then $p \cO_k = p_1^{e_1} \ldots p_r^{e_r}$. Moreover note that $\cO_k /p_i$ is a finite field, so $n(p_i) = p_i^{f_i}$. If we now apply $n$ to the decomposition of $p\cO_k$, then we see that $p^d = p_1^{e_1 f_1}\ldots p_r^{e_r f_r}$, so $p_i=p$ for all $i$ and $e_1 f_1 + \ldots + e_r f_r = d$ (fundamental equation). We call $e_i$ ramification index of $p_i$ over $p$ and $f_i$ inertia degree. 
+
+\1 Extreme cases: (all the prime ideals in $\cO_k$ lie over rational primes?)
+    \2 $r=d$: $p$ is split.
+    \2 $r=1, f_1 = 1$: $p$ ramifies completely. 
+    \2 $r=1, e_1 = 1$: $p$ is inert. 
+
+\0 Note: we say $p_i | p$ if and only if $p\cO_k \subseteq p_i$ for a unique rational prime $p$. \enquote{$p_i$ lies over $p$}.
+
+\0 \begin{definition}
+    $p$ is called ramified in $k$ if the corresponding ramification index $e_p >1$.\\ 
+    $p$ is called ramified in $k$ if $e_p > 1$ for some $p$ over $p$.
+\end{definition}
+
+\0 \begin{theorem}
+    A rational prime $p$ is ramified in $k$ iff $p | d_k$ (discriminant). 
+\end{theorem}
+
+\0 \begin{theorem}
+    Almost all $p$ are unramified. 
+\end{theorem}
+
+\marginnote{Logically, everything now is ideals (except for maybe ramification).}
+
+(Image). The Galois action permutes the primes over the rational primes. This action is transitive (exercise) and preserves $e_i$ and $f_i$, so the fundamental equation takes the form $d= e f r$. This is already interesting information, since if $k/\cQ$ is cyclic of prime degree, then on the left side we have a prime decomposed in three numbers, so only three of the above extreme cases can occur. This is the classical picture. 
+\end{outline}
+
+\subsection{Valuations and completions}
+
+\begin{outline}
+\0 Another angle is replacing ideals with valuations. 
+
+\0 \begin{definition}
+    A \textbf{valuation} of $k$ is a map $|\cdot| : k\ra \R$ such that for all $x,y\in k$k we have non-negativity, multiplicativity and triangle inequality.
+\end{definition}
+\marginnote{This is not a valuation, we call the valuation the exponential valuation.}
+
+\1 We dismiss the trivial valuation $|x|=1 \iff x\neq 0$.
+\1 Sometimes it can happen that it satisfies something stronger: $|x+y|\leq \max \{ |x|,|y|\}$. Then we call it \textbf{non-archimedean} and \textbf{archimedean} otherwise. 
+
+\1 Example: 
+    \2 Archimedean: Let $\sigma: k \xhookrightarrow{} \bC$ and set $|x|_\sigma = |\sigma(x)|$.
+    \2 Non-archimedean: Let $p_0 \subseteq \cO_k$ be prime. For $x\in k^*$ we write $x\cO_k = \prod_p p^{v_p(x)}$ and set $|x|_{p_0}:=q^{-v_{p_0}(x)}$ with $q=|\cO_k / p_0|=p^{f_p}$ for $p_0 \cap \Z = (p)$ ($p$-adic valuation). 
+
+\0 \begin{definition}
+    Two valuations are equivalent if they differ by scaling, or induce the same topology.
+\end{definition}
+
+\0 \begin{theorem}
+    The above examples exhaust all valuations on $k$ up to equivalence. 
+\end{theorem}
+\end{outline}
+
+\marginnote{Lecture 4, ...}
+
+
+
 \end{document}
   
