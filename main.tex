@@ -452,9 +452,95 @@ Let $p$ be a rational prime. Then $p \cO_k = p_1^{e_1} \ldots p_r^{e_r}$. Moreov
 \end{theorem}
 \end{outline}
 
-\marginnote{Lecture 4, ...}
+\marginnote{Lecture 4, 07.11.24}
 
+\begin{outline}
+\0 \begin{theorem}
+    Ostrowski. 
+    1)
+    2) 
+    exhaust all non trivial valuations on $k$ up to equivalence.
+\end{theorem}
 
+\0 \begin{definition}
+    The equivalence classes of (non-archimedian/archimedian) valuations on $k$ are called (finite/infinite) places.
+\end{definition}
+
+Perks of places: The infinite places complete the picture... They allow for completion, so that also a finite place corresponds to embedding for a complete field. 
+
+\0 \begin{definition}
+    $k \xhookrightarrow{} k_v$ is the completion of $k$ with respect to $d_v(x,y)=|x-y|_v$. $k_v=cauchysequences in k / null sequences$ as constant sequences.  
+\end{definition}
+
+\0 p-adic numbers, p-adic fields
+
+\0 \begin{definition}
+    valuation rings of the valued fields
+\end{definition}
+
+\0 \begin{definition}
+    completion of $k$ with respect to... 
+\end{definition}
+
+\0 Note that $O_{(v)}=O_V \cap k$ and $O_v = \overline{O_{(v)}}$. The rings $O_v$ and $O_{(v)}$ are PIDs with unique maximal ideals $\pi O_v={x\in O_v : v(x) <1}$ and $\pi O_{(v)}=\{x\in O_{(v)}:v(x)<1\}$ so they are discrete valuation rings (DVR).
+
+\0 The up to association unique element $\pi\in O_{(v)}\subseteq O_v$ is called a uniformizer. We have a canonical isomorphism $O_{(v)}/\pi O_{(v)}\rightarrow \cong O_V / \pi O_v$ of the residue field.
+
+\0 \begin{theorem}
+    Let $K$ be complete with valuation $v$ and $L/K$ algebraic. Then $v$ extends uniquely to $L$. If $[L:K]=d < \infty$, then $\nabla(x)=\sqrt[d]{v(N_{L/K}(x)}$ for $x\in L$.
+\end{theorem}
+
+\0 In particular, $v_p$ on $\Q_p$ extends uniquely to $\overline{\Q}_p$. Given $\sigma:k\xhookrightarrow{} \overline{\Q}_p$, we obtain $v_\sigma := \overline{v_p}\circ \sigma$. If $\tau \in \Gal{\overline{Q_p}/\Q_p}$ then $\overline{v_p}=\overline{v_p}\circ \tau$, so $v_\sigma = v_{\tau \circ \sigma}$. Basically, extensions of valuations are given by embeddings? Idk
+
+\0 \begin{theorem}
+    1) Every extension $w$ of $v_p$ from $\Q$ to $k$ is of the form $w=v_\sigma$ for some $\sigma: k \xhookrightarrow{} \overline{\Q}_p$.  
+    2) $v_\sigma = v_{\sigma'}$ iff there is $\tau \in \Gal{\overline{Q}_p/\Q_p}$: $\sigma' = \tau \circ \sigma$. 
+\end{theorem}
+
+\0 Remark: this also holds for $p=\infty$ when $\Q_\infty = \R$. Hence: complex infinite places are in 1:1 correspondence with conjugate classes of embeddings $\sigma: k \xhookrightarrow{} \bC$, $\sigma(k)\not\subset \R$. Real infinite places correspond $1:1$ to embeddings $\sigma: k \xhookrightarrow{} \R$. Finite places over $p$ correspond 1:1 to conjugacy classes of $\sigma: k\xhookrightarrow{} \overline{Q}_p$ AND also to non-zero prime ideals $p$ of $O_k$ with $p|p$.
+
+\0 Moreover: $k_W = \sigma(k')$ $\Q_p \subseteq \overline{Q}_p$ if $w=\overline{v}_p \circ \sigma$, $\sigma:k\xhookrightarrow{} \overline{Q}_p$. So There is a commutative square 
+
+\begin{tikzcd}
+\mathcal{k} \arrow[r] \arrow[d, leftarrow] & \mathcal{k}_w \arrow[d, leftarrow] \\
+\mathcal{O} \arrow[r] & \mathcal{O}_p
+\end{tikzcd}
+
+showing the global and local side of correspondence ? 
+
+\0 \begin{theorem}
+    $k\otimes \Q_p \cong \prod_{w | p} k_w$ and $[k_w : \Q_p] = e_w \cdot f_w$ if $p<\infty$.  
+\end{theorem}
+
+\0 \begin{definition}
+    The ring of adeles of $k$ is $\bA_k = \prod_{w \in V(k)} k_W$ (with $O_W \subseteq k_W$ cofinite). Adele comes from additive element. The idele group of $k$ is $\bI_k = \bA^*_k$. $k$ embeds diagonally both in $\bA_k$ and $\cI_k$ with discrete image.
+\end{definition}
+\end{outline}
+
+\subsection{Local-global principle}
+
+\begin{outline}
+\0 Let $p\in k[X]$. Suppose $x\in k$ satisfies $p(x)=0$. Then, of course, $x\in k \subset k_v$ defines a solution $x\in k_v$ to $p(x)=0$. If, on the other hand, we find a local solution $x_v \in k_v$ with $p(x_v)=0$ for all $v\in V(k)$, does this imply that there exists a global solution?
+    \1 Success Cases: The principle works for:
+        \2 Quadratic forms (Minkowski-Hasse)
+        \2 Norm equations for cyclic extensions
+        \2 Some other special polynomials
+    \1 Famous Counterexamples:
+        \2 Selmer's cubic: 3x³ + 4y³ + 5z³ = 0
+        \2 Genus 1 curves can fail
+        \2 Higher degree forms often fail
+    \1 Modern Understanding:
+        \2 Obstruction is measured by Shafarevich-Tate group
+        \2 For genus 0 curves, principle holds
+        \2 For genus $\geq$ 1, additional cohomological obstructions appear
+        \2 Brauer-Manin obstruction explains many failures
+\0 \begin{theorem}
+    Hasse norm principle. Let $k/\Q$ be cyclic and $x\in \Q$. Then $x=N_{k/\Q}(y)$ for some $y\in k$ iff $x=N_{k_v/\Q_p}(y_v)$ for some $y_k\in k_v$ for all $v|p$ and all $p\geq \infty$. 
+\0 \begin{theorem}
+    Hasse principle for central simple algebras. 
+\end{theorem}
+\end{theorem}
+\end{outline}   
 
 \end{document}
   
