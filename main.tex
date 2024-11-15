@@ -334,70 +334,92 @@ An integral domain satisfying these three properties is called a \textbf{Dedekin
 \end{definition}
 \end{outline}
 
-The significance of Dedekind domains lies in their unique factorization property for ideals, which generalizes the unique factorization of elements in UFDs.
+The significance of Dedekind domains lies in their unique factorization property for ideals, which generalizes the unique factorization of elements in UFDs. Basically, Dedekind domains are to ideals what UFDs are to elements.
 
 \marginnote{Lecture 3, 31.11.24}
 
 \begin{outline}
-\0 \begin{theorem}
-    Every ideal $a$ not $0$ and not $1$ in a Dedekind domain has a unique factorization $a=p_1 p_2$ into prime ideals $p_i$. 
+\0 \begin{theorem}[Unique Prime Ideal Factorization]
+Let $R$ be a Dedekind domain. Then every nonzero fractional ideal $\fa \neq R$ has a unique factorization $\fa=\fp_1^{e_1}\fp_2^{e_2}\ldots \fp_n^{e_n}$ where $\fp_i$ are prime ideals and $e_i \in \mathbb{Z}$.
 \end{theorem}
 
-How do we get inverses of ideals? (We strive to treat them as ideal numbers, remember). Let $\cO$ be a Dedekind domain with field of fractions $K$
+Let $\mathcal{O}$ be a Dedekind domain with field of fractions $K$.
 
-\0 \begin{definition}
-    A \textbf{fractional ideal} of $K$ is any finitely generated $\cO$-submodule of $K$.
+\begin{definition}
+A \textbf{fractional ideal} of $\mathcal{O}$ is a finitely generated $\mathcal{O}$-submodule $\mathfrak{a}$ of $K$.
 \end{definition}
 
-\1 Examples: $(a)$ for $a\in K^*$, every integral ideal $a\subseteq \cO$.
+\1 Key examples and properties:
+    \2 Every integral ideal $\mathfrak{a} \subseteq \mathcal{O}$ is a fractional ideal.
+    \2 For any $a \in K^*$, the principal fractional ideal $(a)$ is a fractional ideal.
+    \2 If $\mathfrak{a}$ is a fractional ideal, then $\alpha \mathfrak{a}$ is also a fractional ideal for any $\alpha \in K^*$.
 
-\1 Observe: An $\cO$-module $a\subseteq K^*$ is a fractional ideal iff there exists $0\neq c \in \cO$ such that $c\cdot a \subseteq \cO$. Hence for $a\neq 0$, the set $a^{-1}=\{x\in K : x\cdot a \subseteq \cO\}$ is a fractional ideal. If we define multiplication of ideals $a\cdot b$ as usual (finite sums and products), then $(1) \cdot a = a$ and $a\cdot a^{-1}=(1)$. The element $c$ can be thought of as clearing out the denominators in $a$.
+\1 A key characterization: An $\mathcal{O}$-submodule $\mathfrak{a} \subseteq K$ is a fractional ideal if and only if there exists a nonzero element $c \in \mathcal{O}$ such that: $c \cdot \mathfrak{a} \subseteq \mathcal{O}$
+This $c$ effectively "clears the denominators" in $\mathfrak{a}$, making $c\mathfrak{a}$ an integral ideal.
+
+\1 For a nonzero fractional ideal $\mathfrak{a}$, we define its inverse:
+$\mathfrak{a}^{-1} = \{x \in K : x\cdot \mathfrak{a} \subseteq \mathcal{O}\}$.
+This set is itself a fractional ideal, since it's clearly an $\mathcal{O}$-module and for the $c$ that clears denominators in $\mathfrak{a}$, we have $c\mathfrak{a}^{-1} \subseteq \mathcal{O}$.
 
 \0 \begin{definition}
-    The fractional ideals form abelian group $J_K$ called the \textbf{ideal group} of $K$.
+The fractional ideals form the \textbf{ideal group} $J_K$ under multiplication where:\\
+    1) Multiplication: $\mathfrak{a}\mathfrak{b} = {\sum_{i} a_ib_i : a_i \in \mathfrak{a}, b_i \in \mathfrak{b}}$.\\
+    2) Inverse: $\mathfrak{a}^{-1} = {x \in K : x\mathfrak{a} \subseteq \mathcal{O}}$.\\
+    3) Identity: the ring $\mathcal{O}$ itself, denoted $(1)$.
 \end{definition}
 
 \0 \begin{corollary}
-    For $a \in J_K$, we have a unique decomposition $a = \prod_{(0)\neq p}p^{v_p}$ with $v_p \in \Z$ and almost all $v_p = 0$.
+Every $\mathfrak{a} \in J_K$ has a unique decomposition:
+$\mathfrak{a} = \prod_{(0)\neq \mathfrak{p}}\mathfrak{p}^{v_\mathfrak{p}}$
+where $v_\mathfrak{p} \in \mathbb{Z}$ and almost all $v_\mathfrak{p} = 0$. This shows $J_K$ is free abelian with basis $\Spec(\mathcal{O}) \setminus {(0)}$.
 \end{corollary}
 
-\1 So $J_K$ is free abelian with basis $Spec \cO \setminus \{(0)\}$. Let $P_K = \{(a) : a \in K^*\}$ be the subgroup of \textbf{principal fractional ideals}.
+\0 Let $P_K = \{(a) : a \in K^*\}$ be the \textbf{principal fractional ideals}.
 
 \0 \begin{definition}
-    The (ideal) \textbf{class group} of $K$ is $Cl_K=\delta_K / P_K$. Hence: 
-    $1 \ra \cO^* \ra K^* \ra J_K \ra Cl_K \ra 1$ is exact, so $(a_K / \cO^*)$ describes the $(gain/loss)$ when passing from numbers to ideal numbers.
+    The \textbf{class group} $Cl_K = J_K/P_K$ fits in the exact sequence: 
+    $$1 \ra \cO^* \ra K^* \ra J_K \ra Cl_K \ra 1$$
+    Here $K^*/\mathcal{O}^*$ measures the gain/loss in passing from numbers to ideal numbers.
 \end{definition}
 \marginnote{Loss or gain, are the same.}
 
-\1 Need to study $a_K$ and $\cO^*$. Back to $K=k$ and $\cO = \cO_k$. Further without proofs:
+\1 Further without proofs: For number fields $K=k$ with ring of integers $\mathcal{O}_k$, we have the Gauss-Minkowski theorem.
 
-\0 \begin{theorem}
-    The class group $Cl_k$ is finite. (Gauss-Minkowski)
+\0 \begin{theorem}[Gauss-Minkowski]
+The class group $Cl_k$ of a number field $k$ is finite.
 \end{theorem}
 
-\1 Its order $|Cl_k|$ becomes an important invariant and this invariant is called the \textbf{class number} $h_k$ of $k$. It measures the deviation of $k$...
+\1 The order $|Cl_k| = h_k$ is called the \textbf{class number} of $k$. This invariant measures how far $\mathcal{O}_k$ is from being a principal ideal domain.
 
-\1 Example: Let $D>0$ be square-free. Then $h_{\Q(\sqrt{-D})} = 1 \iff D\in \{1,2,3,7,11,19,43,67,163\}$. Was only conjectured by Gauss and proven by Baker-Stark-Heegner.
+    \2 Notable example: For square-free $D > 0$, the class number $h_{\mathbb{Q}(\sqrt{-D})} = 1$ if and only if: $D \in \{1,2,3,7,11,19,43,67,163\}$. This result (Gauss' conjecture) was proven by Baker-Stark-Heegner.
 
-\1 Determining class numbers of field is a very hard problem in general. Still open: Are there infinitely many $D$ with $h_{\Q(\sqrt{D})}=1$? 
+    \2 Still open: The class number problem remains challenging. For instance, it's unknown whether infinitely many $D$ exist with $h_{\mathbb{Q}(\sqrt{D})} = 1$.
 
-\1 The class group being trivial means that something is UFD and then it is an exercise that in Dedekind domains, UFD implies PID? 
+\1 For Dedekind domains: $Cl_k = 1 \iff \mathcal{O}_k$ is a PID, PID $\implies$ UFD (always) and in Dedekind domains specifically UFD $\implies$ PID (exercise).
 
-\0 \begin{theorem}
-    (Dirichlet) $\cO^*_k \cong \mu(k)\oplus \Z^{r_1 + r_2 -1}$ (roots of unity in $k$ with number of embeddings $r_1,r_2$)
+\0 \begin{theorem}[Dirichlet's Unit Theorem]
+    The unit group of $\mathcal{O}_k$ has the structure:
+    $$\cO^*_k \cong \mu(k)\oplus \Z^{r_1 + r_2 -1}$$ 
+    where $\mu_k$ is the gorup of roots of unity in $k$, $r_1$ is the number of real embeddings and $r_2$ is the number of pairs of complex embeddings.
 \end{theorem}
 \textit{Proof strategy:} \enquote{Geometry of numbers}, lattice, convex closed subsets, etc...
 
 \0 \begin{exercise}
-    Show that for every non-zero ideal $\cO_k /a$ is finite for all $(0)\neq a$. Hint: First assume $a=p$ is prime.
+Prove that $\mathcal{O}_k/\mathfrak{a}$ is finite for every nonzero ideal $\mathfrak{a}$.
+Hint: First consider the case where $\mathfrak{a} = \mathfrak{p}$ is prime.
 \end{exercise}
 
 \0 \begin{definition}
-    The \textbf{absolute norm} of $(0)\neq a$ is $n(a)=|\cO_k /a|$.
+The \textbf{absolute norm} of a nonzero ideal $\mathfrak{a}$ is:
+$n(\mathfrak{a}) = |\mathcal{O}_k/\mathfrak{a}|$
 \end{definition}
-
+\1 Key properties:
+    \2 For principal ideals: $n((a)) = |N_{k/\mathbb{Q}}(a)|$
+    \2 Multiplicative: $n(\mathfrak{a}\mathfrak{b}) = n(\mathfrak{a})n(\mathfrak{b})$
+    \2 Defines a homomorphism: $J_K \to \mathbb{R}_{>0}$
+    
 \0 \begin{exercise}
-    For $a\in \cO_k$, we have $n((a)) = |N_{k/\cQ}(a)|$. It is multiplicative, $n(ab)=n(a)n(b)$, so a homomorphism from $J_K$ to $\R_{> 0}$.
+    Prove the above properties.
 \end{exercise}
 
 This is all we need about integrality in number fields.
