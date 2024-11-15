@@ -376,6 +376,7 @@ where $v_\mathfrak{p} \in \mathbb{Z}$ and almost all $v_\mathfrak{p} = 0$. This 
 
 \0 Let $P_K = \{(a) : a \in K^*\}$ be the \textbf{principal fractional ideals}.
 
+\marginnote{$Cl_K = \{$ fractional ideals $/$ principal fractional ideals $\}$.}
 \0 \begin{definition}
     The \textbf{class group} $Cl_K = J_K/P_K$ fits in the exact sequence: 
     $$1 \ra \cO^* \ra K^* \ra J_K \ra Cl_K \ra 1$$
@@ -400,7 +401,7 @@ The class group $Cl_k$ of a number field $k$ is finite.
 \0 \begin{theorem}[Dirichlet's Unit Theorem]
     The unit group of $\mathcal{O}_k$ has the structure:
     $$\cO^*_k \cong \mu(k)\oplus \Z^{r_1 + r_2 -1}$$ 
-    where $\mu_k$ is the gorup of roots of unity in $k$, $r_1$ is the number of real embeddings and $r_2$ is the number of pairs of complex embeddings.
+    where $\mu_k$ is the gro7up of roots of unity in $k$, $r_1$ is the number of real embeddings and $r_2$ is the number of pairs of complex embeddings.
 \end{theorem}
 \textit{Proof strategy:} \enquote{Geometry of numbers}, lattice, convex closed subsets, etc...
 
@@ -428,31 +429,37 @@ This is all we need about integrality in number fields.
 \subsection{Decomposition and ramification}
 
 \begin{outline}
-Let $p$ be a rational prime. Then $p \cO_k = p_1^{e_1} \ldots p_r^{e_r}$. Moreover note that $\cO_k /p_i$ is a finite field, so $n(p_i) = p_i^{f_i}$. If we now apply $n$ to the decomposition of $p\cO_k$, then we see that $p^d = p_1^{e_1 f_1}\ldots p_r^{e_r f_r}$, so $p_i=p$ for all $i$ and $e_1 f_1 + \ldots + e_r f_r = d$ (fundamental equation). We call $e_i$ ramification index of $p_i$ over $p$ and $f_i$ inertia degree. 
+Let $k$ be a number field of degree $d$ and $\fp$ a rational prime.
+In $\mathcal{O}_k$, $\fp$ decomposes as $\mathcal{O}_k = \mathfrak{p}_1^{e_1} \cdots \mathfrak{p}_r^{e_r}$. Note that each $\mathcal{O}_k/\mathfrak{p}_i$ is a finite field, so if we let $f_i = [\mathcal{O}_k/\mathfrak{p}_i : \mathbb{F}\mathfrak{p}]$, then $n(\mathfrak{p}_i) = \mathfrak{p}^{f_i}$.
+Applying $n$ to the decomposition of $\mathfrak{p}\mathcal{O}_k$, we get:
+$\mathfrak{p}^d = \mathfrak{p}^{e_1f_1}\cdots\mathfrak{p}^{e_rf_r}$. Therefore $e_1f_1 + \cdots + e_rf_r = d$ (fundamental equation). We call $e_i$ the ramification index of $\mathfrak{p}_i$ over $p$ and $f_i$ the inertia degree of $\mathfrak{p}_i$ over $p$.
 
-\1 Extreme cases: (all the prime ideals in $\cO_k$ lie over rational primes?)
-    \2 $r=d$: $p$ is split.
-    \2 $r=1, f_1 = 1$: $p$ ramifies completely. 
-    \2 $r=1, e_1 = 1$: $p$ is inert. 
+\1 Extreme cases: for prime ideals in $\mathcal{O}_k$ over rational primes:
+    \2 $r=d$: $\fp$ is \textbf{split}.
+    \2 $r=1, f_1 = 1$: $\fp$ \textbf{ramifies completely}. 
+    \2 $r=1, e_1 = 1$: $\fp$ is \textbf{inert}. 
 
-\0 Note: we say $p_i | p$ if and only if $p\cO_k \subseteq p_i$ for a unique rational prime $p$. \enquote{$p_i$ lies over $p$}.
+\0 We say $p_i | p$ if and only if $p\cO_k \subseteq p_i$ for a unique rational prime $p$, and say "$\mathfrak{p}_i$ lies over $p$".
 
 \0 \begin{definition}
-    $p$ is called ramified in $k$ if the corresponding ramification index $e_p >1$.\\ 
-    $p$ is called ramified in $k$ if $e_p > 1$ for some $p$ over $p$.
+A rational prime $p$ is called ramified in $k$ if $e_p > 1$ for some prime ideal $\mathfrak{p}$ lying over $p$.
 \end{definition}
 
 \0 \begin{theorem}
-    A rational prime $p$ is ramified in $k$ iff $p | d_k$ (discriminant). 
+A rational prime $p$ is ramified in $k$ if and only if $p | d_k$ (where $d_k$ is the discriminant).
 \end{theorem}
 
 \0 \begin{theorem}
-    Almost all $p$ are unramified. 
+Only finitely many rational primes ramify in $k$.
 \end{theorem}
 
 \marginnote{Logically, everything now is ideals (except for maybe ramification).}
 
-(Image). The Galois action permutes the primes over the rational primes. This action is transitive (exercise) and preserves $e_i$ and $f_i$, so the fundamental equation takes the form $d= e f r$. This is already interesting information, since if $k/\cQ$ is cyclic of prime degree, then on the left side we have a prime decomposed in three numbers, so only three of the above extreme cases can occur. This is the classical picture. 
+\1 The Galois group acts on prime ideals lying over rational primes. This action:
+    \2 Is transitive (exercise)
+    \2 Preserves ramification indices $e_i$ and inertia degrees $f_i$
+\1[] Therefore, in the Galois case, the fundamental equation becomes: $d = efr$.
+For cyclic extensions of prime degree over $\mathbb{Q}$, this constrains possible decomposition types to the three extreme cases listed above.
 \end{outline}
 
 \subsection{Valuations and completions}
