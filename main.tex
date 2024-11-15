@@ -465,98 +465,123 @@ For cyclic extensions of prime degree over $\mathbb{Q}$, this constrains possibl
 \subsection{Valuations and completions}
 
 \begin{outline}
-\0 Another angle is replacing ideals with valuations. 
+\0 \begin{note}
+    In a number field $k$, we can study its arithmetic through two equivalent perspectives. The first approach uses ideal theory, where we study the factorization behavior of prime ideals $\mathfrak{p}$ in $\mathcal{O}_k$. The second approach uses valuations, where each prime ideal $\mathfrak{p}$ naturally gives rise to a $\mathfrak{p}$-adic valuation $v_\mathfrak{p}: k^* \to \mathbb{Z}$. This valuation comes from the prime factorization of principal ideals: when we write $x\mathcal{O}_k = \prod{\mathfrak{p}}_\mathfrak{p}^{v_\mathfrak{p}(x)}$, the exponent $v_\mathfrak{p}(x)$ is our valuation. We can then define a non-archimedean absolute value by setting $|x|\mathfrak{p} = q^{-v\mathfrak{p}(x)}$. This transition from ideals to valuations leads naturally to completions and local fields, providing powerful analytical tools for studying number theoretic questions.
+\end{note}
 
 \0 \begin{definition}
-    A \textbf{valuation} of $k$ is a map $|\cdot| : k\ra \R$ such that for all $x,y\in k$k we have non-negativity, multiplicativity and triangle inequality.
+A \textbf{valuation} of $k$ is a map $|\cdot| : k \to \mathbb{R}$ satisfying for all $x,y \in k$:\\
+1) $|x| \geq 0$ (non-negativity) \\
+2) $|xy| = |x||y|$ (multiplicativity) \\
+3) $|x+y| \leq |x| + |y|$ (triangle inequality) 
 \end{definition}
-\marginnote{This is not a valuation, we call the valuation the exponential valuation.}
+\marginnote{The term "valuation" typically refers to the exponential valuation.}
 
-\1 We dismiss the trivial valuation $|x|=1 \iff x\neq 0$.
-\1 Sometimes it can happen that it satisfies something stronger: $|x+y|\leq \max \{ |x|,|y|\}$. Then we call it \textbf{non-archimedean} and \textbf{archimedean} otherwise. 
+\1 We exclude the trivial valuation $|x|=1 \iff x\neq 0$.
+\1 A valuation is \textbf{non-archimedean} if $|x+y| \leq \max{|x|,|y|}$, and \textbf{archimedean} otherwise.
 
 \1 Example: 
-    \2 Archimedean: Let $\sigma: k \xhookrightarrow{} \bC$ and set $|x|_\sigma = |\sigma(x)|$.
-    \2 Non-archimedean: Let $p_0 \subseteq \cO_k$ be prime. For $x\in k^*$ we write $x\cO_k = \prod_p p^{v_p(x)}$ and set $|x|_{p_0}:=q^{-v_{p_0}(x)}$ with $q=|\cO_k / p_0|=p^{f_p}$ for $p_0 \cap \Z = (p)$ ($p$-adic valuation). 
+    \2 Archimedean: For $\sigma: k \hookrightarrow \mathbb{C}$, define $|x|_\sigma = |\sigma(x)|$
+    \2 Non-archimedean: For prime ideal $\mathfrak{p}_0 \subseteq \mathcal{O}_k$:
+        \3 Write $x\mathcal{O}k = \prod_{\mathfrak{p}}\mathfrak{p}^{v_\mathfrak{p}(x)}$ for $x \in k^*$
+        \3 Set $|x|_{\mathfrak{p}_0} = q^{-v{\mathfrak{p}_0}(x)}$ where $q = |\mathcal{O}_k/\mathfrak{p}_0| = p^{f_p}$ for $\mathfrak{p}_0 \cap \mathbb{Z} = (p)$ ($p$-adic valuation)
 
 \0 \begin{definition}
-    Two valuations are equivalent if they differ by scaling, or induce the same topology.
+    Two valuations are equivalent if they differ by scaling or induce the same topology.
 \end{definition}
 
-\0 \begin{theorem}
-    The above examples exhaust all valuations on $k$ up to equivalence. 
+\0 \begin{theorem}[Ostrowski]
+These examples give all valuations on $k$ up to equivalence.
 \end{theorem}
 \end{outline}
 
 \marginnote{Lecture 4, 07.11.24}
 
 \begin{outline}
-\0 \begin{theorem}
-    Ostrowski. 
-    1)
-    2) 
-    exhaust all non trivial valuations on $k$ up to equivalence.
-\end{theorem}
-
 \0 \begin{definition}
-    The equivalence classes of (non-archimedian/archimedian) valuations on $k$ are called (finite/infinite) places.
+    The equivalence classes of these valuations are called places. We have finite places (from non-archimedean valuations) and infinite places (from archimedean valuations).
 \end{definition}
 
-Perks of places: The infinite places complete the picture... They allow for completion, so that also a finite place corresponds to embedding for a complete field. 
+\1 Intuitively, places correspond to different ways to "view" elements of a field. Finite places correspond to prime ideals in the ring of integers. Infinite places correspond to real and complex embeddings. Each place gives us a different notion of "being small" or "being close". For any place $v$, we can create a complete field by adding all limits of Cauchy sequences:
 
 \0 \begin{definition}
-    $k \xhookrightarrow{} k_v$ is the completion of $k$ with respect to $d_v(x,y)=|x-y|_v$. $k_v=cauchysequences in k / null sequences$ as constant sequences.  
+    The completion $k_v$ of $k$ with respect to the place $v$ is:
+$k \xhookrightarrow{} k_v$ where $k_v$ is complete with respect to the metric $d_v(x,y)=|x-y|_v$. Formally: $k_v = \frac{\{\text{ Cauchy sequences in }k\}}{\{\text{null sequences}\}}$.
 \end{definition}
 
-\0 p-adic numbers, p-adic fields
+\1 Examples: For a prime $p$, completing $\mathbb{Q}$ with respect to the $p$-adic valuation gives the $p$-adic numbers $\mathbb{Q}_p$. Completing $\mathbb{Q}$ with respect to the usual absolute value gives $\mathbb{R}$.
 
 \0 \begin{definition}
-    valuation rings of the valued fields
+    For a place $v$, we have two important rings:\\
+    1) $O_{(v)}$ = $\{x\in k : v(x)\leq 1\}\subset k$. \\ 
+    2) $O_v$ = $\{x\in k : v(x)\leq 1\}\subset k_v$.
 \end{definition}
 
+\1 Key properties:
+    \2 Both are principal ideal domains (PIDs),
+    \2 Both have unique maximal ideals $\pi O_v$ and $\pi O_{(v)}$ respectively, these are discrete valuation rings (DVRs),
+    \2 A uniformizer $\pi$ generates these maximal ideals.
+
+\0 \begin{theorem}[Extensions of valuations]
+    Let $K$ be complete with valuation $v$ and $L/K$ be algebraic. Then $v$ extends uniquely to $L$ and if $[L:K]=d < \infty$, then for $x\in L$: $\nabla(x)=\sqrt[d]{v(N_{L/K}(x)}$.
+\end{theorem}
+
+    \1 Important special case: for the $p$-adic valuation $v_p$ on $\mathbb{Q}_p$:
+        \2 Extends uniquely to $\overline{\mathbb{Q}}_p$,
+        \2 Given embedding $\sigma:k\hookrightarrow \overline{\mathbb{Q}}_p$, get valuation $v_\sigma = \overline{v_p}\circ \sigma$,
+        \2 If $\tau \in \text{Gal}(\overline{\mathbb{Q}}_p/\mathbb{Q}_p)$, then $v_\sigma = v_{\tau \circ \sigma}$.
+        
+\0 \begin{theorem}[Classification of Extended Valuations]
+    Let $k$ be a number field and $v_p$ be the $p$-adic valuation on $\mathbb{Q}$. Then:\\
+    1) Every extension $w$ of $v_p$ from $\mathbb{Q}$ to $k$ is of the form $w=v_\sigma$ for some embedding $\sigma: k \hookrightarrow \overline{\mathbb{Q}}_p$.\\
+    2) Two such extensions are equal ($v_\sigma = v_{\sigma'}$) if and only if there exists $\tau \in \text{Gal}(\overline{\mathbb{Q}}_p/\mathbb{Q}_p)$ such that $\sigma' = \tau \circ \sigma$.
+\end{theorem}
+
+\begin{note}
+    This theorem tells us that all possible ways to extend the p-adic valuation come from embeddings into $\overline{\mathbb{Q}}_p$. Two different embeddings give the same valuation precisely when they differ by an automorphism of $\overline{\mathbb{Q}}_p$ over $\mathbb{Q}_p$. This explains why we get a finite number of extensions for each prime $\fp$, corresponding to the different prime ideals lying over $p$.
+\end{note}
+
+\1 Places can be classified according to their completions:
+    \2 Finite places correspond 1-1 with:
+        \3 Conjugacy classes of embeddings $\sigma: k\hookrightarrow \overline{\mathbb{Q}}_p$
+        \3 Non-zero prime ideals $\mathfrak{p}$ of $O_k$ lying over $p$
+    \2 Infinite places correspond 1-1 with:
+        \3 Real: Embeddings $\sigma: k\hookrightarrow \mathbb{R}$
+        \3 Complex: Conjugate pairs of embeddings $\sigma: k\hookrightarrow \mathbb{C}$, $\sigma(k)\not\subset \mathbb{R}$
+
+\1 For a place $w$ lying over $p$, we have the following fundamental diagram:
+$$\begin{tikzcd}
+k \arrow[r] \arrow[d, leftarrow] & k_w \arrow[d, leftarrow] \\
+\mathcal{O}_k \arrow[r] & \mathcal{O}_p
+\end{tikzcd}$$
+\1[] This square is commutative and shows: the vertical arrows represent inclusions, the horizontal arrows represent completions, $\cO_k$ is the ring of integers of $k$, $\cO_p$ is the ring of integers in the completion. This diagram illustrates how the local and global perspectives interact: completing the global field $k$ and its ring of integers $O_k$ at a prime gives us the local field $k_w$ and its ring of integers $O_p$.
+
+\0 \begin{theorem}[Local Decomposition]
+    For a rational prime $p < \infty$, we have $k \otimes_{\mathbb{Q}} \mathbb{Q}_p \cong \prod_{w|p} k_w$. Moreover, for each place $w|p$: $[k_w : \mathbb{Q}_p] = e_w \cdot f_w$.  
+\end{theorem}
+
+\0 \begin{note}
+    This theorem lets us understand the relationship between a number field $k$ and its completions above a prime $p$.\\
+    The tensor product $k \otimes_{\mathbb{Q}} \mathbb{Q}_p$ represents what happens when we view our number field $k$ "through $p$-adic glasses" - mathematically speaking, this is called base change to $\mathbb{Q}_p$. Remarkably, this decomposes into pieces, one for each place $w$ of $k$ lying above $p$. Each piece is a completion $k_w$, which is itself a finite extension of $\mathbb{Q}_p$.\\
+    To understand each piece $k_w$, we look at its degree over $\mathbb{Q}_p$. This degree factors as $[k_w : \mathbb{Q}_p] = e_w \cdot f_w$, where:\\
+    1) $e_w$ is the ramification index, telling us how much ramification occurs above $p$ \\
+    2) $f_w$ is the inertia degree, measuring how much the residue field grows\\
+    This decomposition explains precisely how a rational prime $p$ can "split" when we move up to our number field $k$. In fact, we can recover the global degree of our number field from these local pieces: $[k : \mathbb{Q}] = \sum_{w|p} [k_w : \mathbb{Q}_p]$. Each completion $k_w$ thus represents a "local piece" of $k$ sitting above $p$, and together these pieces contain all the local information about how $p$ behaves in $k$.
+    For example, if $k = \mathbb{Q}(\sqrt{5})$ and $p = 5$, there is only one place above 5, and we have $e = 2$, $f = 1$, matching the global degree $[k : \mathbb{Q}] = 2$. In contrast, for $p = 11$, which splits completely, we get two places each with $e = f = 1$, and again their degrees sum to 2.
+\end{note}
+
 \0 \begin{definition}
-    completion of $k$ with respect to... 
-\end{definition}
-
-\0 Note that $O_{(v)}=O_V \cap k$ and $O_v = \overline{O_{(v)}}$. The rings $O_v$ and $O_{(v)}$ are PIDs with unique maximal ideals $\pi O_v={x\in O_v : v(x) <1}$ and $\pi O_{(v)}=\{x\in O_{(v)}:v(x)<1\}$ so they are discrete valuation rings (DVR).
-
-\0 The up to association unique element $\pi\in O_{(v)}\subseteq O_v$ is called a uniformizer. We have a canonical isomorphism $O_{(v)}/\pi O_{(v)}\rightarrow \cong O_V / \pi O_v$ of the residue field.
-
-\0 \begin{theorem}
-    Let $K$ be complete with valuation $v$ and $L/K$ algebraic. Then $v$ extends uniquely to $L$. If $[L:K]=d < \infty$, then $\nabla(x)=\sqrt[d]{v(N_{L/K}(x)}$ for $x\in L$.
-\end{theorem}
-
-\0 In particular, $v_p$ on $\Q_p$ extends uniquely to $\overline{\Q}_p$. Given $\sigma:k\xhookrightarrow{} \overline{\Q}_p$, we obtain $v_\sigma := \overline{v_p}\circ \sigma$. If $\tau \in \Gal{\overline{Q_p}/\Q_p}$ then $\overline{v_p}=\overline{v_p}\circ \tau$, so $v_\sigma = v_{\tau \circ \sigma}$. Basically, extensions of valuations are given by embeddings? Idk
-
-\0 \begin{theorem}
-    1) Every extension $w$ of $v_p$ from $\Q$ to $k$ is of the form $w=v_\sigma$ for some $\sigma: k \xhookrightarrow{} \overline{\Q}_p$.  
-    2) $v_\sigma = v_{\sigma'}$ iff there is $\tau \in \Gal{\overline{Q}_p/\Q_p}$: $\sigma' = \tau \circ \sigma$. 
-\end{theorem}
-
-\0 Remark: this also holds for $p=\infty$ when $\Q_\infty = \R$. Hence: complex infinite places are in 1:1 correspondence with conjugate classes of embeddings $\sigma: k \xhookrightarrow{} \bC$, $\sigma(k)\not\subset \R$. Real infinite places correspond $1:1$ to embeddings $\sigma: k \xhookrightarrow{} \R$. Finite places over $p$ correspond 1:1 to conjugacy classes of $\sigma: k\xhookrightarrow{} \overline{Q}_p$ AND also to non-zero prime ideals $p$ of $O_k$ with $p|p$.
-
-\0 Moreover: $k_W = \sigma(k')$ $\Q_p \subseteq \overline{Q}_p$ if $w=\overline{v}_p \circ \sigma$, $\sigma:k\xhookrightarrow{} \overline{Q}_p$. So There is a commutative square 
-
-\begin{tikzcd}
-\mathcal{k} \arrow[r] \arrow[d, leftarrow] & \mathcal{k}_w \arrow[d, leftarrow] \\
-\mathcal{O} \arrow[r] & \mathcal{O}_p
-\end{tikzcd}
-
-showing the global and local side of correspondence ? 
-
-\0 \begin{theorem}
-    $k\otimes \Q_p \cong \prod_{w | p} k_w$ and $[k_w : \Q_p] = e_w \cdot f_w$ if $p<\infty$.  
-\end{theorem}
-
-\0 \begin{definition}
-    The ring of adeles of $k$ is $\bA_k = \prod_{w \in V(k)} k_W$ (with $O_W \subseteq k_W$ cofinite). Adele comes from additive element. The idele group of $k$ is $\bI_k = \bA^*_k$. $k$ embeds diagonally both in $\bA_k$ and $\cI_k$ with discrete image.
+    The ring of adeles $\mathbb{A}_k$ combines all completions:\\ 
+    1) $\mathbb{A}k = \prod{w \in V(k)} k_w$ with restriction that elements lie in $O_w$ for almost all $w$\\
+    2) The idele group $\mathbb{I}_k = \mathbb{A}_k^*$ (multiplicative group of adeles)\\
+    3) $k$ embeds diagonally in both with discrete image
 \end{definition}
 \end{outline}
 
 \subsection{Local-global principle}
 
 \begin{outline}
-\0 Let $p\in k[X]$. Suppose $x\in k$ satisfies $p(x)=0$. Then, of course, $x\in k \subset k_v$ defines a solution $x\in k_v$ to $p(x)=0$. If, on the other hand, we find a local solution $x_v \in k_v$ with $p(x_v)=0$ for all $v\in V(k)$, does this imply that there exists a global solution?
+\0 The fundamental question: If an equation has solutions in all completions $k_v$ (local solutions), does it have a solution in $k$ (global solution)?
     \1 Success Cases: The principle works for:
         \2 Quadratic forms (Minkowski-Hasse)
         \2 Norm equations for cyclic extensions
@@ -566,17 +591,20 @@ showing the global and local side of correspondence ?
         \2 Genus 1 curves can fail
         \2 Higher degree forms often fail
     \1 Modern Understanding:
-        \2 Obstruction is measured by Shafarevich-Tate group
+        \2 Obstruction is measured by the Shafarevich-Tate group
         \2 For genus 0 curves, principle holds
         \2 For genus $\geq$ 1, additional cohomological obstructions appear
         \2 Brauer-Manin obstruction explains many failures
 \0 \begin{theorem}
     Hasse norm principle. Let $k/\Q$ be cyclic and $x\in \Q$. Then $x=N_{k/\Q}(y)$ for some $y\in k$ iff $x=N_{k_v/\Q_p}(y_v)$ for some $y_k\in k_v$ for all $v|p$ and all $p\geq \infty$. 
+\end{theorem}
+
 \0 \begin{theorem}
     Hasse principle for central simple algebras. 
 \end{theorem}
-\end{theorem}
 \end{outline}   
+
+\marginnote{Lecture 5, 22.11.2024}
 
 \end{document}
   
